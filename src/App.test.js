@@ -6,8 +6,23 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 describe('App', () => {
-  it('mounts', () => {
+  let wrapper;
+
+  beforeEach(() => {
     const app = <App />;
-    mount(app);
+    wrapper = mount(app);
+  });
+
+  afterEach(() => {
+    wrapper.unmount();
+  });
+
+  it('renders Learn Jest', () => {
+    expect(
+      wrapper
+        .find('a')
+        .at(0)
+        .text()
+    ).toBe('Learn Jest');
   });
 });
